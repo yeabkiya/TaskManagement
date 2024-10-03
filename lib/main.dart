@@ -57,7 +57,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
       appBar: AppBar(
         title: const Text('Task Manager'),
       ),
-      backgroundColor: const Color.fromARGB(255, 162, 100, 172),
+      backgroundColor: const Color.fromARGB(255, 163, 115, 171),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
