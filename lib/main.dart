@@ -47,6 +47,39 @@ class _TaskListScreenState extends State<TaskListScreen> {
     });
   }
 
-  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Task Manager'),
+      ),
+      backgroundColor: const Color.fromARGB(255, 162, 100, 172),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    controller: _taskController,
+                    decoration: InputDecoration(
+                      labelText: 'Enter task name',
+                    ),
+                  ),
+                ),
+                SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: _addTask,
+                  child: Text('Add'),
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
+            
+          ]
+        )),
+    )
+  }
 
 }
