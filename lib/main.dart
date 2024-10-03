@@ -76,7 +76,25 @@ class _TaskListScreenState extends State<TaskListScreen> {
               ],
             ),
             SizedBox(height: 16),
-            
+
+            Expanded(
+              child: ListView.builder(
+                itemCount: _tasks.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(
+                      _tasks[index].name,
+                      style:TextStyle(
+                        decoration: _tasks[index].isCompleted
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none,
+                      ),
+                    ),
+                    
+                  )
+                }
+              )
+            )
           ]
         )),
     )
