@@ -5,6 +5,8 @@ void main() {
 }
 
 class TaskManagerApp extends StatelessWidget {
+  const TaskManagerApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,13 +20,15 @@ class TaskManagerApp extends StatelessWidget {
 }
 
 class TaskListScreen extends StatefulWidget {
+  const TaskListScreen({super.key});
+
   @override
   _TaskListScreenState createState() => _TaskListScreenState();
 }
 
 class _TaskListScreenState extends State<TaskListScreen> {
   final TextEditingController _taskController = TextEditingController();
-  List<Task> _task = [];
+  final List<Task> _tasks = [];
 
   void _addTask() {
     if (_taskController.text.isNotEmpty) {
@@ -51,7 +55,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Task Manager'),
+        title: const Text('Task Manager'),
       ),
       backgroundColor: const Color.fromARGB(255, 162, 100, 172),
       body: Padding(
@@ -63,19 +67,19 @@ class _TaskListScreenState extends State<TaskListScreen> {
                 Expanded(
                   child: TextField(
                     controller: _taskController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Enter task name',
                     ),
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 ElevatedButton(
                   onPressed: _addTask,
-                  child: Text('Add'),
+                  child: const Text('Add'),
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
 
             Expanded(
               child: ListView.builder(
@@ -92,4 +96,28 @@ class _TaskListScreenState extends State<TaskListScreen> {
                     ),
                     leading: Checkbox(
                       value: _tasks[index].isCompleted,
-                      onChange
+                      onChanged: (bool? value){
+                        _toggleTaskCompletion(index);
+                      },
+                    ),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () => _deleteTask(index),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Task {
+  String name;
+  bool isCompleted;
+
+  Task({required this.name, this.isCompleted = false});
+}
