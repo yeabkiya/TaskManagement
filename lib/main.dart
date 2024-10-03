@@ -90,14 +90,30 @@ class _TaskListScreenState extends State<TaskListScreen> {
                           : TextDecoration.none,
                       ),
                     ),
-                    
-                  )
-                }
-              )
-            )
-          ]
-        )),
-    )
+                    leading: Checkbox(
+                      value: _tasks[index].isCompleted,
+                      onChanged: (bool? value){
+                        _toggleTaskCompletion(index);
+                      },
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () => _deleteTask(index),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
+}
 
+class Task {
+  String name;
+  bool isCompleted;
+
+  Task({required this.name, this.isCompleted = false};)
 }
