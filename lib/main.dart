@@ -16,3 +16,28 @@ class TaskManagerApp extends StatelessWidget {
     );
   }
 }
+
+class TaskListScreen extends StatefulWidget {
+  @override
+  _TaskListScreenState createState() => _TaskListScreenState();
+}
+
+class _TaskListScreenState extends State<TaskListScreen> {
+  final TextEditingController _taskController = TextEditingController();
+  List<Task> _task = [];
+
+  void _addTask() [
+    if (_taskController.text.isNotEmpty) {
+      setState(() {
+        _tasks.add(Task(name: _taskController.text));
+        _taskController.clean();
+      });
+    }
+  ]
+
+  void _deleteTask(int index) {
+    setState(() {
+      _tasks.removeAt(index);
+    });
+  }
+}
